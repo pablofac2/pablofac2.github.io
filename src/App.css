@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+.block-container {
+  /*background-color: rgba(0, 110, 255, 0.219);*/
+  transition: all 1s ease-in;
+  animation: slide-down 1s ease-in-out;
+  /*transform: slide-down 2s  ease-in-out;*/
+  opacity: 1;
+}
+
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

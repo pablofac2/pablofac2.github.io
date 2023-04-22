@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './App.css';
 
 interface NPVBlock {
   id: number;
@@ -88,87 +89,87 @@ const App: React.FC<Props> = () => {
   };
 
   return (
-    <div>
+    <div className={'block-container'}>
       <button onClick={handleAddNPVBlock}>Add NPV Calculation Block</button>
       <button onClick={handleAddDiscountRateBlock}>Add Discount Rate Calculation Block</button>
 
       {npvBlocks.map((block) => (
-      <div key={block.id}>
-    <h3>NPV Calculation Block</h3>
-    <label>
-      Total Amount:
-      <input
-        type="number"
-        value={block.totalAmount}
-        onChange={(e) => handleNPVBlockChange(block.id, 'totalAmount', +e.target.value)}
-      />
-    </label>
-    <br />
-    <label>
-      Monthly Shares:
-      <input
-        type="number"
-        value={block.monthlyShares}
-        onChange={(e) => handleNPVBlockChange(block.id, 'monthlyShares', +e.target.value)}
-      />
-    </label>
-    <br />
-    <label>
-      Discount Rate:
-      <input
-        type="number"
-        value={block.discountRate}
-        onChange={(e) => handleNPVBlockChange(block.id, 'discountRate', +e.target.value)}
-      />
-    </label>
-    <br />
-    <button onClick={() => handleCalculateNPV(block.id)}>Calculate NPV</button>
-    {block.netPresentValue && <p>Net Present Value: {block.netPresentValue.toFixed(2)}</p>}
-  </div>
-))}
+        <div key={block.id} className={'block-container'}>
+          <h3>NPV Calculation Block</h3>
+          <label>
+            Total Amount:
+            <input
+              type="number"
+              value={block.totalAmount}
+              onChange={(e) => handleNPVBlockChange(block.id, 'totalAmount', +e.target.value)}
+            />
+          </label>
+          <br />
+          <label>
+            Monthly Shares:
+            <input
+              type="number"
+              value={block.monthlyShares}
+              onChange={(e) => handleNPVBlockChange(block.id, 'monthlyShares', +e.target.value)}
+            />
+          </label>
+          <br />
+          <label>
+            Discount Rate:
+            <input
+              type="number"
+              value={block.discountRate}
+              onChange={(e) => handleNPVBlockChange(block.id, 'discountRate', +e.target.value)}
+            />
+          </label>
+          <br />
+          <button onClick={() => handleCalculateNPV(block.id)}>Calculate NPV</button>
+          {block.netPresentValue && <p>Net Present Value: {block.netPresentValue.toFixed(2)}</p>}
+        </div>
+      ))}
 
-{discountRateBlocks.map((block) => (
-  <div key={block.id}>
-    <h3>Discount Rate Calculation Block</h3>
-    <label>
-      Original Cost:
-      <input
-        type="number"
-        value={block.originalCost}
-        onChange={(e) =>
-          handleDiscountRateBlockChange(block.id, 'originalCost', +e.target.value)
-        }
-      />
-    </label>
-    <br />
-    <label>
-      Monthly Shares:
-      <input
-        type="number"
-        value={block.monthlyShares}
-        onChange={(e) =>
-          handleDiscountRateBlockChange(block.id, 'monthlyShares', +e.target.value)
-        }
-      />
-    </label>
-    <br />
-    <label>
-      Share Cost:
-      <input
-        type="number"
-        value={block.shareCost}
-        onChange={(e) =>
-          handleDiscountRateBlockChange(block.id, 'shareCost', +e.target.value)
-        }
-      />
-    </label>
-    <br />
-    <button onClick={() => handleCalculateDiscountRate(block.id)}>Calculate Discount Rate</button>
-    {block.discountRate && <p>Discount Rate: {(block.discountRate * 100).toFixed(2)}%</p>}
-  </div>
-))}
-</div>
-);
+      {discountRateBlocks.map((block) => (
+        <div key={block.id} className={'block-container'}>
+          <h3>Discount Rate Calculation Block</h3>
+          <label>
+            Original Cost:
+            <input
+              type="number"
+              value={block.originalCost}
+              onChange={(e) =>
+                handleDiscountRateBlockChange(block.id, 'originalCost', +e.target.value)
+              }
+            />
+          </label>
+          <br />
+          <label>
+            Monthly Shares:
+            <input
+              type="number"
+              value={block.monthlyShares}
+              onChange={(e) =>
+                handleDiscountRateBlockChange(block.id, 'monthlyShares', +e.target.value)
+              }
+            />
+          </label>
+          <br />
+          <label>
+            Share Cost:
+            <input
+              type="number"
+              value={block.shareCost}
+              onChange={(e) =>
+                handleDiscountRateBlockChange(block.id, 'shareCost', +e.target.value)
+              }
+            />
+          </label>
+          <br />
+          <button onClick={() => handleCalculateDiscountRate(block.id)}>Calculate Discount Rate</button>
+          {block.discountRate && <p>Discount Rate: {(block.discountRate * 100).toFixed(2)}%</p>}
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export default App;
